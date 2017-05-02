@@ -1,5 +1,7 @@
 #!/bin/bash
 
+CURR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # Alias
 alias ls='ls -C -F -G'
 alias la='ls -a'
@@ -33,4 +35,4 @@ source ~/.profile
 GIT_PROMPT_ONLY_IN_REPO=1
 GIT_PROMPT_THEME=Solarized
 GIT_PROMPT_END="\n\\$ \[$(tput sgr0)\]"
-source ~/.bash_runtime/sources/bash-git-prompt/gitprompt.sh
+source $CURR_DIR/sources/bash-git-prompt/gitprompt.sh
