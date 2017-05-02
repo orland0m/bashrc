@@ -35,4 +35,5 @@ source ~/.profile
 GIT_PROMPT_ONLY_IN_REPO=1
 GIT_PROMPT_THEME=Solarized
 GIT_PROMPT_END="\n\\$ \[$(tput sgr0)\]"
-source $CURR_DIR/sources/bash-git-prompt/gitprompt.sh
+__GIT_PROMPT_DIR=~/.bash-git-prompt
+source ~/.bash-git-prompt/gitprompt.sh
