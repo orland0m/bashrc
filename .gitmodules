@@ -1,3 +1,6 @@
 [submodule "sources/bash-git-prompt"]
 	path = sources/bash-git-prompt
 	url = git@github.com:magicmonty/bash-git-prompt.git
+[submodule "sources/solarized-mate-terminal"]
+	path = sources/solarized-mate-terminal
+	url = git@github.com:oz123/solarized-mate-terminal.git
