@@ -4,3 +4,6 @@
 [submodule "sources/solarized-mate-terminal"]
 	path = sources/solarized-mate-terminal
 	url = git@github.com:oz123/solarized-mate-terminal.git
+[submodule "sources/powerline_fonts"]
+	path = sources/powerline_fonts
+	url = git@github.com:powerline/fonts.git

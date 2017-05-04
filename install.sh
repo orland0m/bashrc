@@ -6,6 +6,11 @@ printf "#!/bin/bash\n\
 \n\
 source $CURR_DIR/bashrc\n" > ~/.bashrc
 
+pushd $CURR_DIR/sources/powerline_fonts
+./install.sh
+popd
+
+# Mate only configs
 mate-terminal --help &>/dev/null
 
 if [ $? -eq 0 ]; then
