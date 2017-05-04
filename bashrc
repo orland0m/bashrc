@@ -3,7 +3,7 @@
 CURR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Alias
-alias ls='ls -C -F -G'
+alias ls='ls -C -F -G --color=auto'
 alias la='ls -a'
 alias ll='ls -la'
 alias grep='grep --color=auto'
@@ -25,6 +25,7 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 export TERM=xterm-256color
 export PATH=$PATH:~/.opt
+LS_COLORS=$LS_COLORS:'di=1;31:ln=0;32:ex=0;31' ; export LS_COLORS
 
 # Configs: rbenv
 rbenv --help &>/dev/null && eval "$(rbenv init -)"
