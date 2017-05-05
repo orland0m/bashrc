@@ -32,7 +32,7 @@ export PS1="\[\033[38;5;255m\][\[$(tput bold)\]\[$(tput sgr0)\]\[\033[38;5;30m\]
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export TERM=xterm-256color
-export PATH=$PATH:~/.opt
+export PATH=$PATH:$CURR_DIR/opt
 
 # Configs: rbenv
 rbenv --help &>/dev/null && eval "$(rbenv init -)"
