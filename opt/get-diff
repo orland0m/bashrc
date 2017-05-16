@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 2 ]; then
+    echo "Usage: $(basename $0) <First URL> <Second URL>"
+    exit 1
+fi
+
+first=$(mktemp "${TMPDIR:-/tmp/}$(basename 0).XXXXXXXXXXXX")
+second=$(mktemp "${TMPDIR:-/tmp/}$(basename 0).XXXXXXXXXXXX")
+
+echo "Fetching first request into: $first"
+curl $1 > $first
+echo "Fetching second request into: $second"
+curl $2 > $second
+
+json-diff $first $second

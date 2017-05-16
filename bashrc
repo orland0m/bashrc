@@ -25,6 +25,7 @@ SuggestBinary "colordiff"
 SuggestBinary "ack"
 SuggestBinary "nvim"
 SuggestBinary "astyle"
+SuggestBinary "json-diff"
 
 # Alias
 alias la='ls -a'
@@ -35,6 +36,7 @@ alias vim="nvim"
 alias vi="nvim"
 alias diff="colordiff"
 alias ack="ack --color-filename=red --color-lineno=white"
+alias getdiff="get-diff"
 
 # Configs: Other
 export PS1="\[\033[38;5;255m\][\[$(tput bold)\]\[$(tput sgr0)\]\[\033[38;5;30m\]\W\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;166m\]\$?\[$(tput sgr0)\]\[\033[38;5;255m\]]\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
