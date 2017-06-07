@@ -1,0 +1,84 @@
+#!/usr/bin/env python
+
+import re, mmap
+import os
+import argparse
+
+def get_regular_expression(strings_file):
+    strings_to_match = []
+
+    with open(strings_file) as f:
+        strings_to_match = f.readlines()
+
+    strings_to_match = [x.strip() for x in strings_to_match]
+    strings_to_match = [re.escape(x) for x in strings_to_match]
+
+    regex = ""
+
+    for element in strings_to_match:
+        regex = regex + "(?=[\\s\\S]*\\b" + element + "\\b)"
+
+    regex = regex + ".*[\\s\\S]*"
+
+    return regex
+
+def recursive_dir_walk(dir_path, max_depth, curr_depth, on_file_found, *args):
+    for root, subdirs, files in os.walk(dir_path):
+        for file_name in files:
+            on_file_found(os.path.join(root, file_name), *args)
+
+        if max_depth < 0 or curr_depth < max_depth:
+            for subdir in subdirs:
+                recursive_dir_walk(
+                        os.path.join(root, subdir), 
+                        max_depth, 
+                        curr_depth + 1, 
+                        on_file_found, 
+                        *args)
+
+def print_if_matched(file_path, matcher):
+    with open(file_path, 'r+') as f:
+        data = mmap.mmap(f.fileno(), 0)
+        mo = matcher.search(data)
+        if mo:
+            print file_path
+
+# -p -> path
+# -max-depth=# -> max recursive depth in case path is directory
+# -ms -> match with string
+# -mr -> match with regex
+# -mlf -> match with lines in file
+# -mrf -> match with regex in file
+
+# File options
+max_depth = -1
+is_dir = False
+max_depth = -1
+path_to_search = ""
+
+# Regex
+direct_match = False
+regex = ".*[\\s\\S]*"
+ms = ""
+mr = ""
+mlf = ""
+mrf = ""
+
+if direct_match:
+    if ms != "":
+        regex = "(?=[\\s\\S]*\\b" + re.escape(ms) + "\\b).*[\\s\\S]*"
+    else:
+        regex = mr
+else:
+    if mlf != "":
+        regex = get_regular_expression(mlf)
+    else:
+        with open(mrf, 'r') as myfile:
+            regex=myfile.read()
+
+matcher = re.compile(regex)
+
+if is_dir:
+    recursive_dir_walk(path_to_search, max_depth, 0, print_if_matched, matcher):
+else:
+    print_if_matched(path_to_search, matcher)

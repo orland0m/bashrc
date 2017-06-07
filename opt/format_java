@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+DIR=.
+
+if [ "$#" -gt 1 ]
+then
+    echo "Invalid arguments, usage: $(basename $0) <dir to format>"
+    exit 1
+fi
+
+if [ "$#" -eq 1 ]; then
+    DIR=$1
+fi
+
+find $DIR -type f -name "*.java" -exec astyle --indent=spaces=4 --attach-closing-while --indent-col1-comments --break-blocks=all --pad-oper --pad-comma --unpad-paren --delete-empty-lines --break-one-line-headers --add-braces --close-templates --max-code-length=100 --suffix=none --style=java --mode=java {} \;
