@@ -2,21 +2,6 @@
 
 CURR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Call external config files
-if [ -f  ~/.profile ]; then
-    source ~/.profile
-fi
-
-# Do platform specific configs
-case "$(uname -s)" in
-   Darwin)
-       source $CURR_DIR/bashrc.darwin
-     ;;
-   *)
-       source $CURR_DIR/bashrc.linux
-     ;;
-esac
-
 # Alias
 alias la='ls -a'
 alias ll='ls -la'
@@ -44,6 +29,20 @@ GIT_PROMPT_THEME=Solarized
 GIT_PROMPT_END="\n\\$ \[$(tput sgr0)\]"
 export __GIT_PROMPT_DIR=$CURR_DIR/sources/bash-git-prompt
 source $CURR_DIR/sources/bash-git-prompt/gitprompt.sh
+
+# Configs: platform specific
+case "$(uname -s)" in
+   Darwin)
+       source $CURR_DIR/bashrc.darwin
+     ;;
+   *)
+       source $CURR_DIR/bashrc.linux
+     ;;
+esac
+
+if [ "$SSH_CONNECTION" ]; then
+    source $CURR_DIR/bashrc.ssh
+fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
