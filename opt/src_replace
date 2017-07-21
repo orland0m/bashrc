@@ -1,0 +1,1 @@
+ack  -lr --print0 regex_matcher * | xargs -I {} -0 sed -i -e 's/regex_matcher/regex_match/' {}
