@@ -1,1 +1,12 @@
-ack  -lr --print0 regex_matcher * | xargs -I {} -0 sed -i -e 's/regex_matcher/regex_match/' {}
+#!/usr/bin/env bash
+
+if [ "$#" -ne 2 ]
+then
+    echo "Invalid arguments, usage: $(basename $0) <old pattern> <new pattern>"
+    exit 1
+fi
+
+OLD_PATTERN=$1
+NEW_PATTERN=$2
+
+ack  -lr --print0 "$OLD_PATTERN" * | xargs -I {} -0 sed -i -e "s/$OLD_PATTERN/$NEW_PATTERN/" {}
