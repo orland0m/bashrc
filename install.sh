@@ -21,6 +21,8 @@ SuggestBinary "astyle"
 SuggestBinary "json-diff"
 SuggestBinary "npm"
 
+hash git &>/dev/null && git config --global core.excludesfile ~/.bash_runtime/config/git/gitignore_global
+
 # Mate only configs
 mate-terminal --help &>/dev/null
 
