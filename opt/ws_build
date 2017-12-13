@@ -3,7 +3,7 @@
 ENV_SCRIPT=./set_order.sh
 
 if [ -e "$ENV_SCRIPT" ]; then
-    $ENV_SCRIPT
+    source $ENV_SCRIPT
 else 
     echo "Environment file does not exist: $ENV_SCRIPT"
     exit 1
