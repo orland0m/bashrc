@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+brazil workspace --sync
+
+source ./set_order.sh
+
+for package in $(echo $ORDERED_PACKAGES| sed "s/,/ /g")
+do
+    pushd $package
+    (brazil-build | highlight "error|ERROR|Error|fail|FAIL|Fail") || exit $?
+    popd
+done
