@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
-brazil workspace --sync
+ENV_SCRIPT=./set_order.sh
 
-source ./set_order.sh
+if [ -e "$ENV_SCRIPT" ]; then
+    $ENV_SCRIPT
+else 
+    echo "Environment file does not exist: $ENV_SCRIPT"
+    exit 1
+fi 
+
+brazil workspace --sync
 
 for package in $(echo $ORDERED_PACKAGES| sed "s/,/ /g")
 do
