@@ -5,7 +5,7 @@ ENV_SCRIPT=./set_order.sh
 if [ -e "$ENV_SCRIPT" ]; then
     source $ENV_SCRIPT
 else 
-    echo "Environment file does not exist: $ENV_SCRIPT"
+    echo "ERROR: Environment file does not exist: $ENV_SCRIPT"
     exit 1
 fi 
 
@@ -13,7 +13,8 @@ brazil workspace --sync
 
 for package in $(echo $ORDERED_PACKAGES| sed "s/,/ /g")
 do
-    pushd $package
-    (brazil-build | highlight "error|ERROR|Error|fail|FAIL|Fail") || exit $?
+    pushd $package || exit 1
+    brazil-build clean || echo "NOTE: Clean failed... not important"
+    brazil-build || exit 1
     popd
 done
