@@ -10,7 +10,8 @@ alias cls='clear;ls'
 alias vim="nvim"
 alias vi="nvim"
 alias diff="colordiff"
-alias ack="ack --color-filename=red --color-lineno=white"
+alias ack="ag"
+alias ag="ag --color-line-number \"6;33;49\" --color-match \"6;31;49\" --color-path \"7;97;49\""
 alias getdiff="get-diff"
 
 # Configs: Other
