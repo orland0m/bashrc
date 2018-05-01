@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-brazil ws use -p $1 -b mainline
