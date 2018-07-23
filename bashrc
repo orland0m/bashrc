@@ -13,6 +13,7 @@ alias diff="colordiff"
 alias ack="ag"
 alias ag="ag --color-line-number \"6;33;49\" --color-match \"6;31;49\" --color-path \"7;97;49\""
 alias getdiff="get-diff"
+alias ssh-init="ssh-add ~/.ssh/id_rsa"
 
 # Configs: Other
 export PS1="\[\033[38;5;255m\][\[$(tput bold)\]\[$(tput sgr0)\]\[\033[38;5;30m\]\W\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;166m\]\$?\[$(tput sgr0)\]\[\033[38;5;255m\]]\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
@@ -44,6 +45,8 @@ esac
 if [ "$SSH_CONNECTION" ]; then
     source $CURR_DIR/bashrc.ssh
 fi
+
+eval "$(ssh-agent -s)" &>/dev/null
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
