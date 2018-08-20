@@ -3,3 +3,8 @@
 # Linux uses --color for colored output
 alias ls='ls -C -F --color=auto'
 export LS_COLORS=$LS_COLORS:'di=1;31:ln=0;32:ex=0;31'
+
+lsc () {
+    ls -C -F --color=auto $1
+    cd $1
+}
