@@ -8,8 +8,14 @@ alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall F
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export PATH=$PATH:"/Applications/Sublime Text.app/Contents/SharedSupport/bin"
-CURR_JAVA="/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home"
-export PATH=$CURR_JAVA/bin:$PATH
+
+REQUESTED_JAVA_VERSION="1.8"
+if POSSIBLE_JAVA_HOME="$(/usr/libexec/java_home -v $REQUESTED_JAVA_VERSION 2>/dev/null)"; then
+    export JAVA_HOME="$POSSIBLE_JAVA_HOME"
+    export PATH=$JAVA_HOME/bin:$PATH
+else
+    echo "Did not find any installed JDK for version $REQUESTED_JAVA_VERSION"
+fi
 
 lsc () {
     ls -C -F -G $1
