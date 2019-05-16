@@ -21,6 +21,7 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 export TERM=xterm-256color
 export PATH=$PATH:$CURR_DIR/opt
+export HISTCONTROL=ignoreboth:erasedups
 
 # Configs: rbenv
 rbenv --help &>/dev/null && eval "$(rbenv init -)"
